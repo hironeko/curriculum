@@ -25,8 +25,9 @@
 
 ```php
 if (!empty($_GET['id'])) {
+    $id = $_GET['id'];
     $sql = "UPDATE users SET del_flg = true WHERE id = :id AND del_flg = false";
-    $stmt = $this->db->prepare($sql);
+    $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_STR);
     $stmt->execute();
     header('Location: http://localhost:8080');

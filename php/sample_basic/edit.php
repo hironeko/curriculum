@@ -1,5 +1,36 @@
 <?php
+$dsn = 'mysql:dbname=test;host=127.0.0.1;port=3006';
+$user = 'root';
+$password = 'root';
 
+try {
+    $db  = new PDO($dsn, $user, $password);
+} catch (PDOException $e) {
+    echo "接続に失敗しました：" . $e->getMessage() . "\n";
+    exit();
+}
+
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+$stmt = $db->prepare("SELECT * FROM users WHERE id = :id");
+$stmt->bindValue(':id', $id);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!empty($_POST)) {
+    $name = $_POST['name'];
+    $tel = $_POST['tel'];
+    $address = $_POST['address'];
+
+    $sql = "UPDATE users SET name = :name, address = :address, tel = :tel WHERE id = :id AND del_flg = false";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+    $stmt->bindValue(':tel', $tel, PDO::PARAM_STR);
+    $stmt->bindValue(':address', $address, PDO::PARAM_STR);
+    $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+    $stmt->execute();
+    header('Location: http://localhost:8080');
+}
 ?>
 <html lang="ja">
 <head>
@@ -27,7 +58,7 @@
                         class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         type="text"
                         name="name"
-                        value=""
+                        value="<?php echo $user['name'] ?>"
                     >
                 </div>
                 <div class="mb-4">
@@ -38,7 +69,7 @@
                         class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         type="text"
                         name="address"
-                        value=""
+                        value="<?php echo $user['address'] ?>"
                     >
                 </div>
                 <div class="mb-4">
@@ -49,14 +80,14 @@
                         class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         type="text"
                         name="tel"
-                        value=""
+                        value="<?php echo $user['tel'] ?>"
                     >
                 </div>
                 <button 
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     type="submit"
                 >
-                    登録
+                    更新
                 </button>
             </form>
         </div> 

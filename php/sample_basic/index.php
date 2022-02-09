@@ -14,6 +14,15 @@ try {
 // 次に取得すrための記述を行います。
 $users = $db->query("SELECT * FROM users WHERE del_flg = false") // del_flgは削除の有無を保持しています。デフォルトでは、0が入っているためfalseを指定することで削除されていないデータが取得対象になります。
            ->fetchAll(PDO::FETCH_ASSOC);
+
+if (!empty($_GET['id'])) {
+    $id = $_GET['id'];
+    $sql = "UPDATE users SET del_flg = true WHERE id = :id AND del_flg = false";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+    $stmt->execute();
+    header('Location: http://localhost:8080');
+}
 ?>
 <html lang="ja">
 <head>
@@ -50,6 +59,20 @@ $users = $db->query("SELECT * FROM users WHERE del_flg = false") // del_flgは�
                             <td class="border px-4 py-2"><?php echo $user['name'] ?></td>
                             <td class="border px-4 py-2"><?php echo $user['address'] ?></td>
                             <td class="border px-4 py-2"><?php echo $user['tel'] ?></td>
+                            <td class="border px-4 py-2">
+                                <button
+                                class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                                >
+                                <a href="<?php echo '/edit.php?id=' . $user['id'] ?>">編集</a>
+                                </button>
+                            </td>
+                            <td class="border px-4 py-2">
+                                <button
+                                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                                >
+                                    <a href="<?php echo '?id=' . $user['id'] ?>">削除</a>
+                                </button>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
