@@ -1,5 +1,21 @@
 <?php
-var_dump($_POST);
+require_once 'user.php';
+$user = new User();
+
+if (!empty($_POST)) {
+    $name = $_POST['name'];
+    $tel = $_POST['tel'];
+    $address = $_POST['address'];
+
+    try {
+        $user->create($name, $tel, $address);
+        header('Location: http://localhost:8080/sample');
+    
+    } catch (Exception $e) {
+        $errorMessage = $e->getMessage();
+    }
+}
+
 ?>
 <html lang="ja">
 <head>
@@ -7,14 +23,16 @@ var_dump($_POST);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>TOPページ</title>
+    <title>新規登録ページ</title>
 </head>
 <body>
     <div class="container w-auto inline-block px-8">
-        <div class="mt-20 mb-10 flex justify-between">
-            <h1 class="text-base">登録者一覧</h1>
-        </div>
-        <div class="border-solid border-b-2 border-gry-500 p-2 mb-2">
+        <div>
+            <?php if ($errorMessage): ?>
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <span class="block sm:inline"><?php echo $errorMessage ?></span>
+                </div>
+            <?php endif; ?>
             <h2 class="text-base mb-4">新規登録</h2>
             <form method="POST">
                 <div class="mb-4">
@@ -50,27 +68,14 @@ var_dump($_POST);
                         placeholder="09012345678"
                     >
                 </div>
-                <button class="rounded-none" type="submit">登録</button>
+                <button 
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    type="submit"
+                >
+                    登録
+                </button>
             </form>
-        </div>
-        <div>
-            <table class="table-auto">
-                <thead>
-                    <tr>
-                    <th class="px-4 py-2">名前</th>
-                    <th class="px-4 py-2">住所</th>
-                    <th class="px-4 py-2">電話番号</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border px-4 py-2">田中 太郎</td>
-                        <td class="border px-4 py-2">東京都千代田区1-1-1</td>
-                        <td class="border px-4 py-2">09012345678</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        </div> 
     </div>
 </body>
 </html>
