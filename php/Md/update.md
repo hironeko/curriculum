@@ -146,6 +146,7 @@ if (!empty($_POST)) {
     $stmt->bindValue(':address', $address, PDO::PARAM_STR);
     $stmt->bindValue(':id', $id, PDO::PARAM_STR);
     $stmt->execute();
+    header('Location: http://localhost:8080');
 }
 ```
 
@@ -154,3 +155,5 @@ if (!empty($_POST)) {
 それ以外は、新規作成と同じなので直感的に理解ができると思います。
 
 実際に動作させてみましょう。
+
+※更新後は、新規作成時と同様に一覧画面へ遷移させてます

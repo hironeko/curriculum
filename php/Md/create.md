@@ -267,7 +267,7 @@ if (!empty($_POST)) {
     $stmt->bindValue(':tel', $tel, PDO::PARAM_STR);
     $stmt->bindValue(':address', $address, PDO::PARAM_STR);
     $stmt->execute();
-
+    header('Location: http://localhost:8080');
 }
 ```
 
@@ -290,3 +290,5 @@ DB のクライアントアプリケーションを使っているので実際�
 `users`table をクリックし、内容という箇所をクリックすると保存されたデータがみれたと思います。
 
 登録に関しては以上になります。
+
+最後にデータ作成後に一覧へ遷移するため PHP の組み込み関数の`header`を使用し、遷移させております。
