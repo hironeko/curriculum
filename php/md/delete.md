@@ -18,3 +18,40 @@
 今回削除するにあたり論理削除という方法をとります。これは、DB 上にデータは残るが削除されたものと表すカラムをあらかじめ用意しそのカラムに値に応じて論理的には、削除されている状態としてデータを表現することです。(今回ですと del_flg というカラムがそれになります)
 
 処理イメージ：一覧画面にて編集ボタンの横に削除というボタンを起き、ボタン押下時にデータを削除された状態にする更新する処理を行い、一覧画面を再レンダリングし、一覧に表示されるデータを更新します。
+
+さっそく編集していきましょう。
+
+> index.php をいじります
+
+```php
+if (!empty($_GET['id'])) {
+    $sql = "UPDATE users SET del_flg = true WHERE id = :id AND del_flg = false";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+    $stmt->execute();
+    header('Location: http://localhost:8080');
+}
+
+```
+
+まずは、削除を行う実装になります。基本的には、更新なので`UPDATE`文を使用し対象のデータを絞って更新をおこなっています。そして処理後にページを再レンダリングして、一覧のデータを最新に変更してます。
+
+## Part 2
+
+- 次に HTML の方に手を加えて削除機能を完成させます。
+
+> 編集ボタンの下に追記します。
+
+```html
+<td class="border px-4 py-2">
+  <button
+    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+  >
+    <a href="<?php echo '?id=' . $user['id'] ?>">削除</a>
+  </button>
+</td>
+```
+
+この追記が終わったらページをリロードしてみてください。削除ボタンが表示されていると思います。
+
+実際に削除を行ってみましょう。

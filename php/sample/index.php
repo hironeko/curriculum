@@ -7,7 +7,7 @@ $errorMessage = null;
 if (!empty($_GET['id'])) {
     try {
         $user->delete($_GET['id']);
-        header('Location: http://localhost:8080/sample');
+        header('Location: http://localhost:8080');
     } catch (Exception $e) {
         $errorMessage = $e->getMessage();
     }

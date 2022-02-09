@@ -20,7 +20,7 @@ index.php の上にある php タグ内に以下の記述をしましょう
 ```php
 // 最初にDBへの接続を書きます
 $dsn = 'mysql:dbname=test;host=127.0.0.1;port=3006';
-$user = 'root';
+$user= 'root';
 $password = 'root';
 
 try {
@@ -31,7 +31,7 @@ try {
 }
 
 // 次に取得すrための記述を行います。
-$user = $db->query("SELECT * FROM users WHERE del_flg = false") // del_flgは削除の有無を保持しています。デフォルトでは、0が入っているためfalseを指定することで削除されていないデータが取得対象になります。
+$users = $db->query("SELECT * FROM users WHERE del_flg = false") // del_flgは削除の有無を保持しています。デフォルトでは、0が入っているためfalseを指定することで削除されていないデータが取得対象になります。
            ->fetchAll(PDO::FETCH_ASSOC);
 ```
 

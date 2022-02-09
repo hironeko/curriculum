@@ -35,7 +35,7 @@ CREATE TABLE `users` (
   `name` varchar(256) DEFAULT NULL,
   `tel` varchar(11) DEFAULT NULL,
   `address` varchar(256) DEFAULT NULL,
-  `del_flg` tinyint(1) unsigned NOT NULL,
+  `del_flg` tinyint(1) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
