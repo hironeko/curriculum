@@ -38,7 +38,7 @@ class User extends Base
             ->prepare("SELECT * FROM users WHERE id = :id");
         $stmt->bindValue(':id', $id);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function update(string $id, string $name, string $tel, string $address)

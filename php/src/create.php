@@ -1,21 +1,4 @@
 <?php
-require_once 'user.php';
-$user = new User();
-
-$errorMessage = null;
-if (!empty($_POST)) {
-    $name = $_POST['name'];
-    $tel = $_POST['tel'];
-    $address = $_POST['address'];
-
-    try {
-        $user->create($name, $tel, $address);
-        header('Location: http://localhost:8080/sample');
-    
-    } catch (Exception $e) {
-        $errorMessage = $e->getMessage();
-    }
-}
 
 ?>
 <html lang="ja">
@@ -24,16 +7,11 @@ if (!empty($_POST)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>新規登録ページ</title>
+    <title>新規作成ページ</title>
 </head>
 <body>
     <div class="container w-auto inline-block px-8">
-        <div>
-            <?php if ($errorMessage): ?>
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <span class="block sm:inline"><?php echo $errorMessage ?></span>
-                </div>
-            <?php endif; ?>
+        <div class="border-solid border-b-2 border-gry-500 p-2 mb-2">
             <div class="flex justify-between">
                 <h2 class="text-base mb-4">新規登録</h2>
                 <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
@@ -74,14 +52,9 @@ if (!empty($_POST)) {
                         placeholder="09012345678"
                     >
                 </div>
-                <button 
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    type="submit"
-                >
-                    登録
-                </button>
+                <button class="rounded-none" type="submit">登録</button>
             </form>
-        </div> 
+        </div>
     </div>
 </body>
 </html>

@@ -27,7 +27,6 @@ if (!empty($_POST)) {
     }
 }
 
-
 ?>
 <html lang="ja">
 <head>
@@ -35,7 +34,7 @@ if (!empty($_POST)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>新規登録ページ</title>
+    <title>更新ページ</title>
 </head>
 <body>
     <div class="container w-auto inline-block px-8">
@@ -46,7 +45,12 @@ if (!empty($_POST)) {
                 </div>
             <?php endif; ?>
             <?php if($user): ?>
-            <h2 class="text-base mb-4">更新</h2>
+            <div class="flex justify-between">
+                <h2 class="text-base mb-4">更新</h2>
+                <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                    <a href="/">戻る</a>
+                </button>
+            </div>
             <form method="POST">
                 <div class="mb-4">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -85,7 +89,7 @@ if (!empty($_POST)) {
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     type="submit"
                 >
-                    登録
+                    更新
                 </button>
             </form>
             <?php endif; ?>
