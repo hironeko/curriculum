@@ -30,7 +30,7 @@ try {
     exit();
 }
 
-// 次に取得すrための記述を行います。
+// 次に取得するための記述を行います。
 $users = $db->query("SELECT * FROM users WHERE del_flg = false") // del_flgは削除の有無を保持しています。デフォルトでは、0が入っているためfalseを指定することで削除されていないデータが取得対象になります。
            ->fetchAll(PDO::FETCH_ASSOC);
 ```
