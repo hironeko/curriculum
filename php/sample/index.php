@@ -2,7 +2,7 @@
 require_once 'user.php';
 $user = new User();
 $users = $user->index();
-var_dump($users);
+
 $errorMessage = null;
 if (!empty($_GET['id'])) {
     try {
