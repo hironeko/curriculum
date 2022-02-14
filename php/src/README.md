@@ -2,10 +2,10 @@
 
 ### 基礎
 
-1. [新規作成](./../Md/create.md)
-1. [一覧作成](./../Md/index.md)
-1. [更新処理](./../Md/update.md)
-1. [削除処理](./../Md/delete.md)
+1. [新規作成](./../md/create.md)
+1. [一覧作成](./../md/index.md)
+1. [更新処理](./../md/update.md)
+1. [削除処理](./../md/delete.md)
 
 ### 応用
 
