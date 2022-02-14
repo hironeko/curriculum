@@ -21,12 +21,8 @@ if (!empty($_POST)) {
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':name', $name, PDO::PARAM_STR);
     $stmt->bindValue(':tel', $tel, PDO::PARAM_STR);
-    $stmt->bindValue(':address', $address, PDO::PARAM_STR);
-    // var_dump(
-    //     $name, $tel, $address,
-        $stmt->execute();
-    // );
-    // exit();
+    $stmt->bindValue(':address', $address, PDO::PARAM_STR); 
+    $stmt->execute();
     header('Location: http://localhost:8080');
 }
 
