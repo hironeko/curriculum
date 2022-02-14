@@ -195,3 +195,81 @@ $users = $user->index();
 ## Part 7
 
 - 一覧の実装では、削除の機能もあるのでこちらも実装しましょう。
+- またこのタイミングでエラーハンドリングも行える様に修正します。
+
+まずは、削除の SQL 部分の移植します
+
+> user.php
+
+```php
+<?php
+require_once './base.php';
+
+class User extends Base
+{
+    public function __construct()
+    {
+        $this->connection();
+    }
+
+    public function index()
+    {
+        return $this->db
+            ->query("SELECT * FROM users WHERE del_flg = false")
+            ->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // 今後は追加以下のように追加していきましょう
+    public function delete(string $id)
+    {
+        $sql = "UPDATE users SET del_flg = true WHERE id = :id AND del_flg = false";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            throw new Exception('削除できませんでした');
+        }
+    }
+```
+
+- 関数化をおこなっているだけになります。また SQL の実行の結果削除ができなかった場合`execute()`は、`false`を返すので`Exception`を実行します。
+
+* 次に`index.php`に以下を追記します。
+
+```php
+$errorMessage = null;
+if (!empty($_GET['id'])) {
+    try {
+        $user->delete($_GET['id']);
+        header('Location: http://localhost:8080');
+    } catch (Exception $e) {
+        $errorMessage = $e->getMessage();
+    }
+}
+```
+
+- 処理としては、URL にパラメーターが存在したら削除を行うとなります。丁寧な実装なら js などで confirm を出してあげたりしますが、今回は割愛しております。
+
+- 今回 class User で削除されなかったら exception を実行する様にしているので index.php 側でハンドリングする必要性があります。なので今回`try catch`を使用しています。また今回は、変数に格納していますが、FW などでこの様に変数に入れて処理を内々に済ませることは推奨しません。理由として、エラーを握りつぶしているのとの同じになるからです。適宜適切な処理を心がけましょう。
+
+### エラー内容の表示を行う
+
+- Exception が実行されて try catch でハンドリングし変数に格納したのでエラーがある場合は、画面に表示される様に修正したいとおもいます。
+
+> index.php
+
+```html
+<?php if ($errorMessage): ?>
+<div
+  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+  role="alert"
+>
+  <span class="block sm:inline"><?php echo $errorMessage ?></span>
+</div>
+<?php endif; ?>
+```
+
+- 上記の記述を登録者一覧の文字列がある div の上に追記しましょう
+
+これでエラーが起きた場合は、画面に表示される様にしなります。
+
+## Part 8
