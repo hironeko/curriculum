@@ -12,4 +12,4 @@
 - Validation、エラーハンドリングなどを学びます
   - また同時に別 file に切り出して共通化などを行います
 
-1. [応用]('./../md/advanced_one.md')
+1. [応用](./../md/advanced_one.md)
