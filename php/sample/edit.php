@@ -1,16 +1,20 @@
 <?php
 require_once 'user.php';
+require_once 'validationException.php';
+
 $class = new User();
-$id =isset($_GET['id']) ? $_GET['id'] : null;
-$errorMessage = null;
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+$errorMessage = [];
+$user = null;
 
 if (is_null($id)) {
-    $errorMessage = 'URLが不正です';
+    $errorMessage[] = 'URLが不正です';
+} else {
+    $user = $class->show($id);
 }
 
-$user = $class->show($id);
-if (empty($user)) {
-    $errorMessage = '登録者が存在しません';
+if (!is_null($id) && empty($user)) {
+    $errorMessage[] = '登録者が存在しません';
 }
 
 if (!empty($_POST)) {
@@ -22,8 +26,8 @@ if (!empty($_POST)) {
         $class->update($id, $name, $tel, $address);
         header('Location: http://localhost:8080/sample');
     
-    } catch (Exception $e) {
-        $errorMessage = $e->getMessage();
+    } catch (ValidationException $e) {
+        $errorMessage = $e->getArrayMessage();
     }
 }
 
@@ -39,18 +43,23 @@ if (!empty($_POST)) {
 <body>
     <div class="container w-auto inline-block px-8">
         <div>
-            <?php if ($errorMessage): ?>
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <span class="block sm:inline"><?php echo $errorMessage ?></span>
-                </div>
+            <?php if (!empty($errorMessage)): ?>
+                <?php foreach($errorMessage as $message): ?>
+                    <div
+                    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                    role="alert"
+                    >
+                        <span class="block sm:inline"><?php echo $message ?></span>
+                    </div>
+                <?php endforeach; ?>
             <?php endif; ?>
-            <?php if($user): ?>
             <div class="flex justify-between">
                 <h2 class="text-base mb-4">更新</h2>
                 <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                     <a href="/">戻る</a>
                 </button>
             </div>
+            <?php if($user): ?>
             <form method="POST">
                 <div class="mb-4">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

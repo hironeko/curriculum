@@ -1,5 +1,6 @@
 <?php
 require_once './base.php';
+require_once './validationException.php';
 
 class User extends Base
 {
@@ -12,14 +13,14 @@ class User extends Base
         $this->connection();
     }
 
-    public function index()
+    public function index(): array
     {
         return $this->db
             ->query("SELECT * FROM users WHERE del_flg = false")
             ->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function create(string $name, string $tel, string $address)
+    public function create(string $name, string $tel, string $address): void
     {
         $this->name = $name;
         $this->tel = $tel;
@@ -32,7 +33,7 @@ class User extends Base
         }
     }
 
-    public function show(string $id)
+    public function show(string $id): array
     {
         $stmt = $this->db
             ->prepare("SELECT * FROM users WHERE id = :id");
@@ -41,7 +42,7 @@ class User extends Base
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function update(string $id, string $name, string $tel, string $address)
+    public function update(string $id, string $name, string $tel, string $address): void
     {
         $this->name = $name;
         $this->tel = $tel;
@@ -54,7 +55,7 @@ class User extends Base
         }
     }
 
-    public function delete(string $id)
+    public function delete(string $id): void
     {
         $sql = "UPDATE users SET del_flg = true WHERE id = :id AND del_flg = false";
         $stmt = $this->db->prepare($sql);
@@ -64,22 +65,27 @@ class User extends Base
         }
     }
 
-    private function validation()
+    private function validation(): void
     {
+        $errorMessage = []; 
         if (empty($this->name)) {
-            throw new Exception('名前が入力されてません', 422);
+            $errorMessage[] = '名前が入力されてません';
         }
 
         if (empty($this->tel)) {
-            throw new Exception('電話番号が入力されてません', 422);
+            $errorMessage[] = '電話番号が入力されてません';
         }
 
         if (empty($this->address)) {
-            throw new Exception('住所が入力されてません', 422);
+            $errorMessage[] = '住所が入力されてません';
+        }
+
+        if (!empty($errorMessage)) {
+            throw new ValidationException($errorMessage, 422);
         }
     }
 
-    private function createOrUpdate(PDOStatement $stmt, ?string $id = null)
+    private function createOrUpdate(PDOStatement $stmt, ?string $id = null): bool
     {
         $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
         $stmt->bindValue(':tel', $this->tel);

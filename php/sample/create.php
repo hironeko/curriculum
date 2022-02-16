@@ -1,8 +1,9 @@
 <?php
 require_once 'user.php';
+require_once 'validationException.php';
 $user = new User();
 
-$errorMessage = null;
+$errorMessage = [];
 if (!empty($_POST)) {
     $name = $_POST['name'];
     $tel = $_POST['tel'];
@@ -12,8 +13,8 @@ if (!empty($_POST)) {
         $user->create($name, $tel, $address);
         header('Location: http://localhost:8080/sample');
     
-    } catch (Exception $e) {
-        $errorMessage = $e->getMessage();
+    } catch (ValidationException $e) {
+        $errorMessage = $e->getArrayMessage();
     }
 }
 
@@ -29,10 +30,12 @@ if (!empty($_POST)) {
 <body>
     <div class="container w-auto inline-block px-8">
         <div>
-            <?php if ($errorMessage): ?>
+            <?php if (!empty($errorMessage)): ?>
+                <?php foreach($errorMessage as $message): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <span class="block sm:inline"><?php echo $errorMessage ?></span>
+                    <span class="block sm:inline"><?php echo $message ?></span>
                 </div>
+                <?php endforeach; ?>
             <?php endif; ?>
             <div class="flex justify-between">
                 <h2 class="text-base mb-4">新規登録</h2>
