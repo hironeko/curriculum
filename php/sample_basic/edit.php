@@ -1,5 +1,5 @@
 <?php
-$dsn = 'mysql:dbname=test;host=127.0.0.1;port=3006';
+$dsn = 'mysql:dbname=test;host=127.0.0.1;port=3006;charset=utf8mb4';
 $user = 'root';
 $password = 'root';
 

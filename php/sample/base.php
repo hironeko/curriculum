@@ -3,7 +3,7 @@
 
 class Base
 {
-    const DNS = 'mysql:dbname=test;host=127.0.0.1;port=3006;charset=utf8';
+    const DNS = 'mysql:dbname=test;host=127.0.0.1;port=3006;charset=utf8mb4';
     const USER = 'root';
     const PASSWORD = 'root';
     protected PDO $db;

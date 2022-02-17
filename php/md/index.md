@@ -19,7 +19,7 @@ index.php の上にある php タグ内に以下の記述をしましょう
 
 ```php
 // 最初にDBへの接続を書きます
-$dsn = 'mysql:dbname=test;host=127.0.0.1;port=3006';
+$dsn = 'mysql:dbname=test;host=127.0.0.1;port=3006;charset=utf8mb4';
 $user= 'root';
 $password = 'root';
 

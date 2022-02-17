@@ -157,7 +157,7 @@ DB に関して少し知れたので実際に DB にデータを入れていき�
 では早速書いていきたいと思います。
 
 ```php
-$dsn = 'mysql:dbname=test;host=127.0.0.1;port=3006';
+$dsn = 'mysql:dbname=test;host=127.0.0.1;port=3006;charset=utf8mb4';
 $user = 'root';
 $password = 'root';
 
