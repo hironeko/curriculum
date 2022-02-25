@@ -24,7 +24,7 @@ Laravel : 8.83.*
 
 - 第 2 章 Application 作成
 
-  - [テーブルとデータの作成](./lesson_md/Second_2-1.md)
+  - [テーブル作成](./lesson_md/Second_2-1.md)
   - [hello world!を表示させる](./lesson_md/Second_2-2.md)
   - [view の作成](./lesson_md/Second_2-3.md)
     - [view の分割を行なっていく](./lesson_md/Second_2-3-1.md)
