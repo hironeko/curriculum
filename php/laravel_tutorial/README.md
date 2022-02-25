@@ -1,22 +1,11 @@
 # Laravel Tutorial
 
----
-
 ## このリポジトリで学ぶこと
 
 1. Laravel を使用して基本的な CRUD 機能の実装
-   <!-- 2. CRUD とは？
-2. DI とは？ -->
-   <!-- 4. リレーションとは？
-3. PHPUnit とは？
-4. Vue.js との連携 -->
-
-以上を学習することが目的
-
-開発環境は以下
 
 ```
-PHP  : 7.4.8 ~
+PHP  : 7.4.* ~
 Laravel : 8.83.*
 ```
 
@@ -31,7 +20,7 @@ Laravel : 8.83.*
   - [前提環境・install・起動](./lesson_md/First_1-1.md)
   - [ディレクトリ構成の確認](./lesson_md/First_1-2.md)
   - [頻出コマンド一覧](./lesson_md/First_1-3.md)
-  - [処理フローイメージ図](./lesson_md/First_1-4.md)
+    <!-- - [](./lesson_md/First_1-4.md) -->
 
 - 第 2 章 Application 作成
 
