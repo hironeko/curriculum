@@ -1,46 +1,67 @@
-## Vue.jsとは？
+## 下書き
 
-近年流行っているJSライブラリです。Reactと双璧と言えます。
+- 短いPHPの実装経験の上で必要だと感じた最低限のコーディングルール
+- 厳密な型指定
+- PHPDocsの記載
+- DIとは？
+- レイヤードアーキテクチャ
+- 1fileでの責務の明確化
+- 1メソッドの記述量を少なくし可読性をあげる
 
-## なぜ流行っているのか？
+```php
+<?php
+declare(strict_types=1);
 
-第一に学習コストが低い点です。ただしこれは、あくまでVue.js単体での話です。
-これにVuex等が絡んでくると学習コストは比例してあがります。
+namespace App\Services;
 
-## 事前順は？
+use App\Models\User;
 
-ES6を知っていること事前に学習していること
-ただし必須ではないです。
+/**
+* UserSettingService class
+*/
+class UserSettingService
+{
+    /**
+    * @var User
+    */
+    private $user;
 
-## LaravelとVue
-
-デフォルトでVueのサンプルが用意されています。もちろんpackage.jsonにもすでにライブラリが記述されているので`yarn install` or `npm i`を実行すれば準備が完了します。
-
-## さっそくinstallしbuildしましょう
-
-ターミナル上で以下を実行しましょう。
-```shell
-yarn install
-yarn hot
+    /**
+    * constructor
+    * @param User $user
+    */
+    public function __constructor(User $user)
+    {
+        $this->user = $user;
+    }
+}
 ```
 
-今回なぜhotを実行したかというとこのまま実装をしつつbuildも行うためです。
-ターミナル上に`DONE Compiled successfully in 4079ms`のようなものが表示されたらOKです。
+- if文
 
-
-## 今回のゴール
-
-ここまでに作成したものをAPIに変更し実行を可能します。
-
-ただし今回は、`Vuex`は使用しません。
-
-
-## 追加で使用するものをinstallしましょう
-
-```shell
-yarn add vue-router vuetify material-design-icons-iconfont --dev
+```php
+$item = null;
+if (is_null($item)) {
+    return ['message' => 'model not found'];
+}
 ```
 
-cssのフレームワークを今回使用します。またVue側でroutingを実現させるために`vue-router`をinstallします
+## sql
+
+頻出コマンド
+```
+show databases;
+show tables;
+show tables like '%nanika%';
+show index from table_name;
+explain select * from hoge where id = n and created_at = 'yyyy-mm-dd H:i:s';
+desc table_name;
+```
+
+頻出用語
+```
+実行計画
+index（索引）
+```
 
 

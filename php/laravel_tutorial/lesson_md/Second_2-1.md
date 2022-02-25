@@ -59,7 +59,9 @@ class CreateTodosTable extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->text('title');  /* 追加 */
+            $table->text('content');  /* 追加 */
             $table->timestamps();
+            $table->softDeletes(); /* 追加 */
         });
     }
 
@@ -93,88 +95,4 @@ Migrating: 20yy_mm_dd_xxxxxx_create_todos_table
 Migrated:  20yy_mm_dd_xxxxxx_create_todos_table
 ```
 
-## DB に初期データの投入を行います
-
-- seeder という機能を使用して database に初期データを投入するための file の作成と記述を行います。
-
-```shell
-php artisan make:seeder TodosTableSeeder
-```
-
-上記コマンド実行することによって*database/seeds/*以下に作成されます。
-作成された file に対して編集を行います。以下の様になる様に修正します。
-
-```php
-<?php
-declare(strict_types=1);
-
-namespace Database\Seeders;
-
-use App\Models\Todo;
-use Illuminate\Support\Str;
-use Illuminate\Database\Seeder;
-
-class TodosTableSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        for ($i = 1; $i < 5; $i++) {
-            Todo::create(['title' => Str::random(10)]);
-        }
-    }
-}
-
-```
-
-上記のように変更が終わったらこの新たに追加した Class を使用するために同じ階層に存在する。*DatabaseSeeder.php*という file に追記を行います。
-*run*というメソッドの中に先ほど手を加えた*Class*の Class 名を書いてあげます。
-そうすることによって作成した Seeder を実行しデータの投入が可能になります。
-
-```php
-<?php
-
-use Illuminate\Database\Seeder;
-
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        // $this->call(UsersTableSeeder::class);
-        $this->call(TodosTableSeeder::class); // 追加
-    }
-}
-```
-
-## DB に反映させる
-
-変更が完了したら作成した file を DB に反映させるためのコマンドを実行します。
-
-```shell
-php artisan db:seed
-Seeding: TodosTableSeeder
-```
-
-コマンド実行後に上記のような表記がされたら問題なく DB に反映が行われています。
-
-## おまけ
-
-```shell
-php artisan migrate
-php artisan db:seed
-
-
-# 以下と同義です
-php artisan migrate --seed
-```
-
-実行することにより結果 migration file の実行と seed file の実行を同時に行うことが可能になります。
+- 上記結果が出たら問題なく反映が行われています。

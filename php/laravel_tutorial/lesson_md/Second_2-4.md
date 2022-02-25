@@ -4,7 +4,7 @@
 
 ここまでの流れと実装した内容を振り返ります。
 
-- DB の作成とダミーデータとして使うためのデータの生成
+- DB の作成
 - Laravel の動作確認
 - Controller への記述
 - View のベースの作成、表示の確認、View の分割、Form の変更
@@ -22,6 +22,8 @@ Form の変更を行った際に見慣れない記述が出たと思います。
 +--------|-----------|------------------|--------------|---------------------------------------------|--------------+
 |        | GET|HEAD  | /                |              | Closure                                     | web          |
 |        | GET|HEAD  | api/user         |              | Closure                                     | api,auth:api |
+|        |           |                     |              |                                                            | App\Http\Middleware\Authenticate:sanctum |
+|        | GET|HEAD  | sanctum/csrf-cookie |              | Laravel\Sanctum\Http\Controllers\CsrfCookieController@show | web                                      |
 |        | GET|HEAD  | todo             | todo.index   | App\Http\Controllers\TodoController@index   | web          |
 |        | POST      | todo             | todo.store   | App\Http\Controllers\TodoController@store   | web          |
 |        | GET|HEAD  | todo/create      | todo.create  | App\Http\Controllers\TodoController@create  | web          |
@@ -37,11 +39,11 @@ Form の変更を行った際に見慣れない記述が出たと思います。
 
 - `Name` ：この `URI` を使用する際は、この `Name` を使用すれば対象 `Action` のメソッドが使用されますよ。という意味になります。
 
-  - 使い方としては、以下のような使い方をします。
+  - 使い方の一例としては、以下のような使い方をします。
 
   ```php
   route('todo.index');
   // routeは、Laravelが用意しているものになります。
   ```
 
-- `Middleware` ：使用している Middleware の記載を行なってます。 `web` は必ずないし基本的には使用されると考えて問題ないです。ただ上から 2 個目のように `api` を別で定義している場合は、このように表示されます。
+- `Middleware` ：使用している Middleware の記載を行なってます。 ここに認証や認可などのController着弾前の処理を指定することが可能です。

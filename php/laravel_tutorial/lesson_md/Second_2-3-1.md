@@ -29,6 +29,7 @@ touch resources/views/todo/index.blade.php
   <table class="table table-hover todo-table">
     <thead>
       <tr>
+        <th>タイトル</th>
         <th>やること</th>
         <th>作成日時</th>
         <th>更新日時</th>
@@ -39,10 +40,8 @@ touch resources/views/todo/index.blade.php
     <tbody>
       <tr>
         <td>静的なTodoです</td>
-        <td>2017-01-01 00:00:00</td>
-        <td>2017-01-10 00:00:00</td>
-        <td><a class="btn btn-info" href="">編集</a></td>
-        <td><button class="btn btn-danger" type="submit">削除</button></td>
+        <td>2022-02-01 00:00:00</td>
+        <td>2022-02-10 00:00:00</td>
       </tr>
     </tbody>
   </table>
@@ -64,36 +63,14 @@ touch resources/views/todo/index.blade.php
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Laravel</title>
-
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
-
-    <!-- Fonts -->
-    <link
-      href="//fonts.googleapis.com/css?family=Roboto:400,300"
-      rel="stylesheet"
-      type="text/css"
-    />
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style>
-      .todo-table td {
-        vertical-align: middle !important;
-      }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
+
   <body>
-    <div class="container">
+    <div class="container w-auto inline-block px-8">
       @yield('content')
       <!-- 追記 -->
     </div>
-    <!-- Scripts -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>
 ```
@@ -107,14 +84,13 @@ touch resources/views/todo/index.blade.php
 <!-- 追記 -->
 
 <h2 class="page-header">ToDo一覧</h2>
-
 <p class="pull-right">
   <a class="btn btn-success" href="/todo/create">追加</a>
 </p>
-
 <table class="table table-hover todo-table">
   <thead>
     <tr>
+      <th>タイトル</th>
       <th>やること</th>
       <th>作成日時</th>
       <th>更新日時</th>
@@ -125,10 +101,8 @@ touch resources/views/todo/index.blade.php
   <tbody>
     <tr>
       <td>静的なTodoです</td>
-      <td>2017-01-01 00:00:00</td>
-      <td>2017-01-10 00:00:00</td>
-      <td><a class="btn btn-info" href="">編集</a></td>
-      <td><button class="btn btn-danger" type="submit">削除</button></td>
+      <td>2022-02-01 00:00:00</td>
+      <td>2022-02-10 00:00:00</td>
     </tr>
   </tbody>
 </table>
@@ -154,7 +128,9 @@ touch resources/views/todo/index.blade.php
   - もちろん他にも用途は、あげられると思います。
 
 - 外部 file の読み込み以外にも多くのメソッドが存在します。
+
   - `foreach` と `if文` の性質をもつ `@forelse` など便利なメソッドも多くあるので一度公式サイトなどを見てみることをオススメします。
+  - [Loops のドキュメント](https://laravel.com/docs/9.x/blade#loops)
 
 view の実装が一旦終わりました。このままブラウザで確認したいのですが現状だとエラーが出ると思います。
 その理由は、実装した view を表示するための記述を Controller に行なっていないためです。なので表示させるために Controller の編集を行いましょう。
@@ -265,11 +241,31 @@ view の file を編集する前に導入したものを使用可能にするた
 ```html
 <!-- 省略 -->
 {!! Form::open(['route' => 'todo.store']) !!}
-<div class="form-group">
-  {!! Form::input('text', 'title', null, ['required', 'class' => 'form-control',
-  'placeholder' => 'ToDo内容']) !!}
+<div class="mb-4">
+  <label
+    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+  >
+    Title
+  </label>
+  {!! Form::textarea('title', null, ['required', 'class' => 'appearance-none
+  block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4
+  leading-tight focus:outline-none focus:bg-white focus:border-gray-500',
+  'placeholder' => '新規Title', 'rows' => '3']) !!}
 </div>
-<button type="submit" class="btn btn-success pull-right">追加</button>
+<div class="mb-4">
+  <label
+    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+  >
+    内容
+  </label>
+  {!! Form::textarea('content', null, ['required', 'class' => 'appearance-none
+  block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4
+  leading-tight focus:outline-none focus:bg-white focus:border-gray-500',
+  'placeholder' => '新規Todo']) !!}
+</div>
+{!! Form::submit('登録', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white
+font-bold py-2 px-4 rounded']) !!}
+<!-- 閉じる -->
 {!! Form::close() !!}
 <!-- 省略 -->
 ```
@@ -278,12 +274,32 @@ view の file を編集する前に導入したものを使用可能にするた
 
 ```html
 <!-- 省略 -->
-{!! Form::open(['route' => ['todo.update', $todo->id], 'method' => 'PUT']) !!}
-<div class="form-group">
-  {!! Form::input('text', 'title', $todo->title, ['required', 'class' =>
-  'form-control']) !!}
+{!! Form::open(['route' => ['todo.update', $todo->id], 'method' => 'PUT']]) !!}
+<div class="mb-4">
+  <label
+    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+  >
+    Title
+  </label>
+  {!! Form::textarea('title', $todo->title, ['required', 'class' =>
+  'appearance-none block w-full bg-white text-gray-700 border border-gray-200
+  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white
+  focus:border-gray-500', 'placeholder' => '新規Title', 'rows' => '3']) !!}
 </div>
-<button type="submit" class="btn btn-success pull-right">更新</button>
+<div class="mb-4">
+  <label
+    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+  >
+    内容
+  </label>
+  {!! Form::textarea( 'content', $todo->content, ['required', 'class' =>
+  'appearance-none block w-full bg-white text-gray-700 border border-gray-200
+  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white
+  focus:border-gray-500', 'placeholder' => '新規Todo']) !!}
+</div>
+{!! Form::submit('登録', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white
+font-bold py-2 px-4 rounded']) !!}
+<!-- 閉じる -->
 {!! Form::close() !!}
 <!-- 省略 -->
 ```
