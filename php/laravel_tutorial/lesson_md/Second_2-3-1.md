@@ -33,8 +33,8 @@ touch resources/views/todo/index.blade.php
         <th>やること</th>
         <th>作成日時</th>
         <th>更新日時</th>
-        <th></th>
-        <th></th>
+        <th>編集</th>
+        <th>削除</th>
       </tr>
     </thead>
     <tbody>
@@ -94,8 +94,8 @@ touch resources/views/todo/index.blade.php
       <th>やること</th>
       <th>作成日時</th>
       <th>更新日時</th>
-      <th></th>
-      <th></th>
+      <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
   <tbody>

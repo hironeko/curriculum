@@ -32,6 +32,7 @@ Laravel : 8.83.*
   - [controller を仕上げていく](./lesson_md/Second_2-5.md)
   - [view を仕上げていく](./lesson_md/Second_2-6.md)
   - [完成&動作確認](./lesson_md/Second_2-7.md)
+  - [おまけ](./lesson_md/Second_2-8.md)
 
 <!-- - 第 3 章 認証(ログイン機能)
 
