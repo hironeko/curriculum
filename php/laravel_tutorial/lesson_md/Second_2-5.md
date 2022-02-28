@@ -3,15 +3,9 @@
 - View に関しては、概ね完了してます。それに対応した `Controller` の記述を書いていきます。
 - 現状として実装で触ったのは、`index` メソッドのみかと思います。なので `create` 、 `edit` 、 `destroy` に付随するメソッドを含め記載を行い、DB への値の保存などの操作を行えるようにします。
 
-まず最初に `DB` への操作が行えるように `Model` の file を作成します
+まず最初に `DB` への操作が行えるように `Model` の fileの修正をおこなっていきます。
 
-```shell
-php artisan make:model Todo
-```
-
-> また migration の作成と同時に Model の作成も同時に行うコマンドも存在しています。
-
-`app/` 以下に file が作成されたと思うので編集を行います。
+`app/` 以下に file が存在していると思うので編集を行います。
 
 ```php
 <?php
@@ -232,7 +226,7 @@ View file の指定を行います。Create メソッドに関しては、以上
             'content' => ['required', 'string', 'max:255']
         ]);
         $this->todo->findOrFail($id)->fill($validated)->save();
-        return redirect()->to('todo.index');
+        return redirect()->route('todo.index');
     }
 // 以下省略
 ```
@@ -253,7 +247,7 @@ View file の指定を行います。Create メソッドに関しては、以上
     public function destroy(int $id)
     {
         $this->todo->findOrFail($id)->delete();
-        return redirect()->to('todo.index');
+        return redirect()->route('todo.index');
     }
 ```
 

@@ -352,7 +352,7 @@ font-bold py-2 px-4 rounded']) !!}
 
 ```html
 <!-- 省略 -->
-{!! Form::open(['route' => ['todo.update', $todo->id], 'method' => 'PUT']]) !!}
+{!! Form::open(['route' => ['todo.update', $todo->id], 'method' => 'PUT']) !!}
 <div class="mb-4">
   <label
     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
