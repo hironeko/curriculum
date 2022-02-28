@@ -287,7 +287,7 @@ composer require laravelcollective/html
 実行した後しばらくしたら install が始まります。
 
 終わったら各 view file に記載ある Form タグを変えていきます。この際、Form タグ内で使用されている Input タグも書き換えていきます。
-[リファレンス](https://laravelcollective.com/docs/master/html#opening-a-form)
+[リファレンス](https://laravelcollective.com/docs/6.x/html)
 
 使い方は、リンクに記載ある方法を用いて行います。
 view の file を編集する前に導入したものを使用可能にするために設定を行います。
