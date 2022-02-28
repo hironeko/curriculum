@@ -54,30 +54,34 @@ touch resources/views/layouts/app.blade.php
   </head>
   <body>
     <div class="container">
-      <h2 class="page-header">ToDo一覧</h2>
-
-      <p class="pull-right">
-        <a class="btn btn-success" href="/todo/create">追加</a>
-      </p>
-
-      <table class="table table-hover todo-table">
-        <thead>
-          <tr>
-            <th>やること</th>
-            <th>作成日時</th>
-            <th>更新日時</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>静的なTodoです</td>
-            <td>2022-02-01 00:00:00</td>
-            <td>2022-02-10 00:00:00</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="mt-20 mb-10 flex justify-between">
+        <h1 class="text-base">TODO一覧</h1>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          <a href="{{ route('todo.create') }}">新規追加</a>
+        </button>
+      </div>
+      <div>
+        <table class="table-auto">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">タイトル</th>
+              <th class="px-4 py-2">やること</th>
+              <th class="px-4 py-2">作成日時</th>
+              <th class="px-4 py-2">更新日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2"></td>
+              <td class="border px-4 py-2"></td>
+              <td class="border px-4 py-2"></td>
+              <td class="border px-4 py-2"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </body>
 </html>

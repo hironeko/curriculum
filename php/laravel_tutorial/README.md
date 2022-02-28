@@ -34,21 +34,22 @@ Laravel : 8.83.*
   - [完成&動作確認](./lesson_md/Second_2-7.md)
   - [おまけ](./lesson_md/Second_2-8.md)
 
-<!-- - 第 3 章 認証(ログイン機能)
+<!-- - 第 3 章 API化
+  - [CRUD機能をAPI化する](./lesson_md/Third_3-1.md)
+
+- 第 4 章 PHPUnit
+  - [phpunitを触ってみよう](./lesson_md/Third_3-1.md)
+  - [APIに対してphpunitの実装 1](./lesson_md/Third_3-2.md)
+
+
+- 第 5 章 認証(ログイン機能)
 
   - [ログイン機能の実装](./lesson_md/Fourth_4-1.md)
   - [既存ページにログイン機能を反映](./lesson_md/Fourth_4-2.md)
 
-- 第 4 章 ユーザーとデータの紐付け
-  - [リレーションとは?](./lesson_md/Fifth_5-1.md)
+- 第 6 章 ユーザーとデータの紐付け
+  - [リレーションとは?](./lesson_md/Fifth_5-1.md) -->
 
-- 第 6 章 API化
-  - [CRUD機能をAPI化する](./lesson_md/Third_3-1.md)
-
-
-- 第 6 章 PHPUnit
-  - [phpunitを触ってみよう](./lesson_md/Third_3-1.md)
-  - [APIに対してphpunitの実装 1](./lesson_md/Third_3-2.md) -->
   <!-- - [phpunitの実装 2](./lesson_md/Third_3-3.md) -->
 
 <!-- ## 以下執筆未定

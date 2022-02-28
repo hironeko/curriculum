@@ -19,29 +19,30 @@ touch resources/views/todo/index.blade.php
 編集 file `resources/views/todo/index.blade.php`
 
 ```html
-<div class="container">
-  <h2 class="page-header">ToDo一覧</h2>
-
-  <p class="pull-right">
-    <a class="btn btn-success" href="/todo/create">追加</a>
-  </p>
-
-  <table class="table table-hover todo-table">
+<div class="mt-20 mb-10 flex justify-between">
+  <h1 class="text-base">TODO一覧</h1>
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+  >
+    <a href="{{ route('todo.create') }}">新規追加</a>
+  </button>
+</div>
+<div>
+  <table class="table-auto">
     <thead>
       <tr>
-        <th>タイトル</th>
-        <th>やること</th>
-        <th>作成日時</th>
-        <th>更新日時</th>
-        <th>編集</th>
-        <th>削除</th>
+        <th class="px-4 py-2">タイトル</th>
+        <th class="px-4 py-2">やること</th>
+        <th class="px-4 py-2">作成日時</th>
+        <th class="px-4 py-2">更新日時</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>静的なTodoです</td>
-        <td>2022-02-01 00:00:00</td>
-        <td>2022-02-10 00:00:00</td>
+        <td class="border px-4 py-2">Todoのタイトルです</td>
+        <td class="border px-4 py-2">Todoの内容です</td>
+        <td class="border px-4 py-2">2022-02-01 00:00:00</td>
+        <td class="border px-4 py-2">2022-02-10 00:00:00</td>
       </tr>
     </tbody>
   </table>
@@ -83,29 +84,34 @@ touch resources/views/todo/index.blade.php
 @section('content')
 <!-- 追記 -->
 
-<h2 class="page-header">ToDo一覧</h2>
-<p class="pull-right">
-  <a class="btn btn-success" href="/todo/create">追加</a>
-</p>
-<table class="table table-hover todo-table">
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>やること</th>
-      <th>作成日時</th>
-      <th>更新日時</th>
-      <th>編集</th>
-      <th>削除</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>静的なTodoです</td>
-      <td>2022-02-01 00:00:00</td>
-      <td>2022-02-10 00:00:00</td>
-    </tr>
-  </tbody>
-</table>
+<div class="mt-20 mb-10 flex justify-between">
+  <h1 class="text-base">TODO一覧</h1>
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+  >
+    <a href="{{ route('todo.create') }}">新規追加</a>
+  </button>
+</div>
+<div>
+  <table class="table-auto">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">タイトル</th>
+        <th class="px-4 py-2">やること</th>
+        <th class="px-4 py-2">作成日時</th>
+        <th class="px-4 py-2">更新日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border px-4 py-2">Todoのタイトルです</td>
+        <td class="border px-4 py-2">Todoの内容です</td>
+        <td class="border px-4 py-2">2022-02-01 00:00:00</td>
+        <td class="border px-4 py-2">2022-02-10 00:00:00</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 @endsection
 <!-- 追記 -->
@@ -166,13 +172,50 @@ touch resources/views/todo/create.blade.php resources/views/todo/edit.blade.php
 ```html
 @extends('layouts.app') @section('content')
 
-<h2 class="page-header">ToDo作成</h2>
-<form>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="ToDo内容" />
+<div class="border-solid border-b-2 border-gry-500 p-2 mb-2">
+  <div class="flex justify-between">
+    <h2 class="text-base mb-4">新規追加</h2>
+    <button
+      class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+    >
+      <a href="{{ route('todo.index') }}">戻る</a>
+    </button>
   </div>
-  <button type="submit" class="btn btn-success pull-right">追加</button>
-</form>
+  <form method="POST">
+    <div class="mb-4">
+      <label
+        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+      >
+        Title
+      </label>
+      <input
+        class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        type="text"
+        name="title"
+        placeholder="新規のTodo"
+      />
+    </div>
+    <div class="mb-4">
+      <label
+        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+      >
+        内容
+      </label>
+      <input
+        class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        type="text"
+        name="content"
+        placeholder="新規のTodo"
+      />
+    </div>
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      type="submit"
+    >
+      登録
+    </button>
+  </form>
+</div>
 
 @endsection
 ```
@@ -182,13 +225,48 @@ touch resources/views/todo/create.blade.php resources/views/todo/edit.blade.php
 ```html
 @extends('layouts.app') @section('content')
 
-<h2 class="page-header">ToDo編集</h2>
-<form>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="ToDo内容" />
+<div class="border-solid border-b-2 border-gry-500 p-2 mb-2">
+  <div class="flex justify-between">
+    <h2 class="text-base mb-4">更新</h2>
+    <button
+      class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+    >
+      <a href="{{ route('todo.index') }}">戻る</a>
+    </button>
   </div>
-  <button type="submit" class="btn btn-success pull-right">更新</button>
-</form>
+  <form method="POST">
+    <div class="mb-4">
+      <label
+        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+      >
+        Title
+      </label>
+      <input
+        class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        type="text"
+        name="title"
+      />
+    </div>
+    <div class="mb-4">
+      <label
+        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+      >
+        内容
+      </label>
+      <input
+        class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        type="text"
+        name="content"
+      />
+    </div>
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      type="submit"
+    >
+      登録
+    </button>
+  </form>
+</div>
 
 @endsection
 ```
