@@ -133,6 +133,8 @@ Controller の編集が終わりましたら次にこの Controller を利用す
 ```php
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
