@@ -20,3 +20,104 @@
   - リファクタリング等を行った場合再度テストを実行してパスすれば実装は完了します。
 
 ### 上記手順をもとに実装を行っていきたいと思います
+
+#### テストを行う上での環境を構築する
+
+- DB には、すでに`laravel_test`という DB が存在しています。
+
+  - テストを行う上で使用する DB になります。
+  - この DB を使用するための設定をおこなっていきたいと思います。
+
+- 最初に`.env`を複製し以下の様に file 名かつ修正を行います。
+
+> .env.testing
+
+```
+APP_ENV=testing
+// 省略
+DB_DATABASE=laravel_test
+// 省略
+
+```
+
+- 修正後に下記コマンドを実行してください
+
+```shell
+php artisan migrate --env=testing
+```
+
+- migration が実行されたら問題ありません。これでテスト環境の DB 環境が整いました。
+
+#### テストの作成
+
+- テストを作成します。今回は、`Feature`テストを作成します。以下のコマンドを実行してください。
+
+```shell
+php artisan make:test Api/TodoControllerTest
+```
+
+以下の内容の file が`tests/Feature/Api`ディレクトリ以下に`TodoControllerTest.php`が作成されているとおもいます。
+
+```php
+<?php
+
+namespace Tests\Feature\Api;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+class TodoControllerTest extends TestCase
+{
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     */
+    public function test_example()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+    }
+}
+
+```
+
+- この file を編集していきます。
+
+#### テストを実行してみる
+
+```shell
+./vendor/bin/phpunit
+```
+
+このコマンドをルートディレクトリにて実行してみてください。
+
+```shell
+HPUnit 9.5.13 by Sebastian Bergmann and contributors.
+
+...                                                                 3 / 3 (100%)
+
+Time: 00:00.328, Memory: 22.00 MB
+
+OK (3 tests, 3 assertions)
+```
+
+上記みたいな結果がターミナルにて表示されたでしょうか？
+
+- 現状すべてのテストが OK の状態になっています。
+
+- Controller の作成を行います。
+
+```shell
+php artisan make:controller Api/TodoController
+```
+
+`app/Http/Controllers/Api`以下に TodoController.php が作成されていると思います。
+
+こちらを編集していきます。
+
+```php
+
+```
