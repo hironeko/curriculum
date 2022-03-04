@@ -124,12 +124,11 @@ namespace Tests\Feature\Api;
 
 use App\Models\Todo;
 use Tests\TestCase;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TodoControllerTest extends TestCase
 {
+    use DatabaseTransactions;
 
     public function setUp():void
     {
