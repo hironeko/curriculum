@@ -97,4 +97,82 @@ class CompanyControllerTest extends TestCase
 
         $res->assertStatus(404);
     }
+
+    /**
+     * @test
+     */
+    public function 会社情報を更新する()
+    {
+        $company = Company::factory()->create();
+        $params = [
+            'name' => '更新',
+            'name_kana' => 'こうしん',
+            'post_code' => '333-2222',
+            'prefecture' => '東京都',
+            'address' => '千代田区1-1',
+            'tel' => '09012345679',
+            'representative_first_name' => '会社代表者の姓更新',
+            'representative_last_name' => '会社代表者の名更新',
+            'representative_first_name_kana' => 'かいしゃだいひょうせいかなこうしん',
+            'representative_last_name_kana' => 'かいしゃだいひょうめいかなこうしん',
+        ];
+        $res = $this->putJson(route('api.company.update', $company->id), $params);
+
+        $res->assertOk();
+
+        $data = $res->json();
+
+        $this->assertTrue(collect($params)->every(function ($v, $k) use ($data) {
+            return $data[$k] === $v;
+        }));
+    }
+
+     /**
+     * @test
+     */
+    public function 会社情報を更新でvalidationにひっかかる()
+    {
+        $company = Company::factory()->create();
+        $params = [
+            'name' => null,
+            'name_kana' => 'こうしん',
+            'post_code' => '333-2222',
+            'prefecture' => '東京都',
+            'address' => '千代田区1-1',
+            'tel' => '09012345679',
+            'representative_first_name' => '会社代表者の姓更新',
+            'representative_last_name' => '会社代表者の名更新',
+            'representative_first_name_kana' => 'かいしゃだいひょうせいかなこうしん',
+            'representative_last_name_kana' => 'かいしゃだいひょうめいかなこうしん',
+        ];
+        $res = $this->putJson(route('api.company.update', $company->id), $params);
+
+        $res->assertStatus(422);
+    }
+
+    /**
+     * @test
+     */
+    public function 会社情報を削除する()
+    {
+        $company = Company::factory()->create();
+
+        $res = $this->deleteJson(route('api.company.delete', $company->id));
+
+        $res->assertOk();
+
+        $this->assertCount(0, Company::all());
+    }
+
+    /**
+     * @test
+     */
+    public function 会社情報を削除際、データが存在しない()
+    {
+        $company = Company::factory()->create();
+
+        $res = $this->deleteJson(route('api.company.delete', $company->id + 1));
+
+        $res->assertStatus(404);
+    }
 }

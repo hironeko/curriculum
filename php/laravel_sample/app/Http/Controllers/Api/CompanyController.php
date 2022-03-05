@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CompanyStoreRequest;
 use App\Models\Company;
-use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -28,5 +27,21 @@ class CompanyController extends Controller
         $company = $this->company->findOrFail($id);
 
         return $company;
+    }
+
+    public function update(CompanyStoreRequest $request, int $id)
+    {
+        $params = $request->validated();
+        $company = $this->company->findOrFail($id);
+
+        $company->update($params);
+
+        return $company;
+    }
+
+    public function delete(int $id)
+    {
+        $this->company->findOrFail($id)->delete();
+        return ['message' => 'success'];
     }
 }

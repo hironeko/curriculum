@@ -27,3 +27,5 @@ Route::delete('todo/{id}', [TodoController::class, 'destroy'])->name('api.todo.d
 
 Route::post('company/create', [CompanyController::class, 'store'])->name('api.company.create');
 Route::get('company/{id}', [CompanyController::class, 'show'])->name('api.company.show');
+Route::put('company/{id}', [CompanyController::class, 'update'])->name('api.company.update');
+Route::delete('company/{id}', [CompanyController::class, 'delete'])->name('api.company.delete');
