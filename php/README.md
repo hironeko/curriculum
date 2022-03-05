@@ -36,3 +36,37 @@ CTL + C で止めることができます。
 ```shell
 docker-compose up -d
 ```
+
+#### Windows
+
+- WSL2 を使用して環境を作成します。下記 URL を参考にまずは WSL2 の install を行なってください
+
+[手順](https://docs.microsoft.com/ja-jp/windows/wsl/install)
+
+- Docker の install を行います。
+
+[ダウンロード](https://docs.docker.com/desktop/windows/install/)
+
+- install 後下記手順を踏んでください
+
+- Docker の設定を開き下記の画像のようになるように操作してください
+
+![settings](./img/windows_docker_settings.png)
+
+- 操作が完了したら WSL のターミナルを開き下記コマンドを実行し、コマンドが使えることを確認してください。
+
+```shell
+which docker-compose
+```
+
+- DB 環境を作成します
+
+```shell
+docker-compose up
+```
+
+Mac の手順同様ログが出たら一度止め、Mac の手順と同じようにコマンドを実行しましょう
+
+- Windows の場合、WSL2 には PHP が入っていません。適宜ダウンロードし使えるようにしましょう。
+
+> PHP の version は、必ず 7.4 以上を入れるようにしましょう
