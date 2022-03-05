@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TodoController extends Controller
 {
@@ -23,17 +24,7 @@ class TodoController extends Controller
     public function index()
     {
         $todos = $this->todo->orderby('updated_at', 'desc')->paginate(5);
-        return view('todo.index', ['todos' => $todos]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('todo.create');
+        return $todos;
     }
 
     /**
@@ -50,18 +41,14 @@ class TodoController extends Controller
         ]);
         $this->todo->fill($validated)->save();
 
-        return redirect()->route('todo.index');
+        return ['message' => 'ok'];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(int $id)
     {
-        //
+        $todo = $this->todo->findOrFail($id);
+
+        return $todo;
     }
 
     /**
@@ -74,7 +61,7 @@ class TodoController extends Controller
     {
         $todo = $this->todo->findOrFail($id);
 
-        return view('todo.edit', ['todo' => $todo]);
+        return $todo;
     }
 
     /**
@@ -90,10 +77,11 @@ class TodoController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string', 'max:255']
         ]);
+        $todo = $this->todo->findOrFail($id);
 
-        $this->todo->findOrFail($id)->fill($validated)->save();
+        $todo->update($validated);
 
-        return redirect()->route('todo.index');
+        return $todo;
     }
 
     /**
@@ -105,6 +93,6 @@ class TodoController extends Controller
     public function destroy(int $id)
     {
         $this->todo->findOrFail($id)->delete();
-        return redirect()->route('todo.index');
+        return ['message' => 'ok'];
     }
 }

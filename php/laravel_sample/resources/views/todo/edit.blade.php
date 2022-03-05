@@ -4,7 +4,7 @@
     <!-- 追記 -->
     <div class="border-solid border-b-2 border-gry-500 p-2 mb-2">
         <div class="flex justify-between">
-            <h2 class="text-base mb-4">新規追加</h2>
+            <h2 class="text-base mb-4">更新</h2>
             <button
                 class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                 <a href="{{ route('todo.index') }}">戻る</a>
