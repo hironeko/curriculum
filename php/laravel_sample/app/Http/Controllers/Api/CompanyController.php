@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CompanyStoreRequest;
+use App\Http\Requests\Api\CompanyStoreWithBillingRequest;
 use App\Models\Company;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -43,5 +46,18 @@ class CompanyController extends Controller
     {
         $this->company->findOrFail($id)->delete();
         return ['message' => 'success'];
+    }
+
+    public function storeWithBilling(CompanyStoreWithBillingRequest $request)
+    {
+        $params = $request->validated();
+
+        $company = DB::transaction(function() use ($params) {
+            $company = $this->company->create($params);
+            $company->billing()->create($params['billing']);
+            return $company->load('billing');
+        });
+
+        return $company;
     }
 }

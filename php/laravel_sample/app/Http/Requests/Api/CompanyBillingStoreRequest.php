@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CompanyStoreRequest extends FormRequest
+class CompanyBillingStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -54,22 +54,27 @@ class CompanyStoreRequest extends FormRequest
                 'string',
                 'max:11'
             ],
-            'representative_first_name' => [
+            'department' => [
                 'required',
                 'string',
                 'max:100'
             ],
-            'representative_last_name' => [
+            'billing_first_name' => [
                 'required',
                 'string',
                 'max:100'
             ],
-            'representative_first_name_kana' => [
+            'billing_last_name' => [
                 'required',
                 'string',
                 'max:100'
             ],
-            'representative_last_name_kana' => [
+            'billing_first_name_kana' => [
+                'required',
+                'string',
+                'max:100'
+            ],
+            'billing_last_name_kana' => [
                 'required',
                 'string',
                 'max:100'
