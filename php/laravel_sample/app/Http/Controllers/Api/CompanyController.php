@@ -22,4 +22,11 @@ class CompanyController extends Controller
         $company = $this->company->create($params);
         return $company;
     }
+
+    public function show(int $id)
+    {
+        $company = $this->company->findOrFail($id);
+
+        return $company;
+    }
 }
