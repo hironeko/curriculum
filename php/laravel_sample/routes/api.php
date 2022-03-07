@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\TodoController;
+use App\Http\Controllers\Api\Todo;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\CompanyBillingController;
 
