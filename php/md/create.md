@@ -56,7 +56,7 @@
   - [Download URL](https://matsuand.github.io/docs.docker.jp.onthefly/desktop/mac/install/)
   - Docker を起動します
 - git clone したディレクトリにて下記コマンドを実行しましょう
-  - `docker-composer up -d`
+  - `docker-compose up -d`
   - このコマンドを実行したことで DB が作成されます
 - ログみたいなものが出力されなくなったら`docker-compose ps`を実行してください。UP の文字が確認できたら成功です
 - src を任意の場所にコピーして作業を始めましょう
