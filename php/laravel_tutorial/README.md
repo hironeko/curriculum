@@ -37,7 +37,11 @@ Laravel : 8.83.*
 - 第 3 章 API 化とテストの実装
   - [CRUD 機能を API 化する](./lesson_md/Api_1-1.md)
     - [API とテストの実装](./lesson_md/Api_1-2.md)
-  - [課題](./lesson_md/Api_2.md)
+
+---
+
+- 以下は指示があるまでやらないでください
+- [第 3 章の発展課題](./lesson_md/Api_2.md)
 
 <!--
 - 第 4 章 PHPUnit
