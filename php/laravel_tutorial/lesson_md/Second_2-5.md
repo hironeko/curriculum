@@ -3,7 +3,7 @@
 - View に関しては、概ね完了してます。それに対応した `Controller` の記述を書いていきます。
 - 現状として実装で触ったのは、`index` メソッドのみかと思います。なので `create` 、 `edit` 、 `destroy` に付随するメソッドを含め記載を行い、DB への値の保存などの操作を行えるようにします。
 
-まず最初に `DB` への操作が行えるように `Model` の fileの修正をおこなっていきます。
+まず最初に `DB` への操作が行えるように `Model` の file の修正をおこなっていきます。
 
 `app/` 以下に file が存在していると思うので編集を行います。
 
@@ -11,7 +11,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,7 +47,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Todo;  // 追記
+use App\Models\Todo;  // 追記
 
 /**
 * TodoController class
