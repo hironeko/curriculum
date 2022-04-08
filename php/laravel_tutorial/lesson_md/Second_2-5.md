@@ -161,7 +161,7 @@ View file の指定を行います。Create メソッドに関しては、以上
             'content' => ['required', 'string', 'max:255']
         ]);
 
-        $this->todo->fill($input)->save();
+        $this->todo->fill($validated)->save();
 
         return redirect()->route('todo.index');
     }
