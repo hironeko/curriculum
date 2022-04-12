@@ -225,7 +225,7 @@ View file の指定を行います。Create メソッドに関しては、以上
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string', 'max:255']
         ]);
-        $this->todo->findOrFail($id)->fill($validated)->save();
+        $this->todo->findOrFail($id)->update($validated);
         return redirect()->route('todo.index');
     }
 // 以下省略
