@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -91,7 +92,7 @@ class TodoController extends Controller
             'content' => ['required', 'string', 'max:255']
         ]);
 
-        $this->todo->findOrFail($id)->fill($validated)->save();
+        $this->todo->findOrFail($id)->update($validated);
 
         return redirect()->route('todo.index');
     }
