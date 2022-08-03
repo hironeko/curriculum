@@ -5,6 +5,11 @@
 
 #### Mac
 
+#### M1 Macをしようしている人
+
+- docker-compose.ymlを使用せず、docker-compose.yml-for-M1を`docker-compose.yml`にリネームして使用していください。
+  - その際すでにそんざいしているfileは削除してください
+
 ##### PHP
 
 - 本カリキュラムでは、PHP の version は、7.4.\*以上を推奨します。
@@ -70,6 +75,8 @@ Mac の手順同様ログが出たら一度止め、Mac の手順と同じよう
 - Windows の場合、WSL2 には PHP が入っていません。適宜ダウンロードし使えるようにしましょう。
 
 > PHP の version は、必ず 7.4 以上を入れるようにしましょう。また下記コマンドを実行すれば必要なものが大方入り動作させることが可能になると思います
+
+- 下記7.4という数字は自身のPCでしようされているPHPのversionに合わせてください
 
 ```shell
 $ sudo apt install -y php7.4 php7.4-zip php7.4-mbstring php7.4-xml php7.4-mysql unzip
