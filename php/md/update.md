@@ -102,6 +102,8 @@ $stmt = $db->prepare("SELECT * FROM users WHERE id = :id");
 $stmt->bindValue(':id', $id);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+var_dump($user);  // 確認後消してください
 ```
 
 上記の様に記述することでデータの取得ができているはずです。

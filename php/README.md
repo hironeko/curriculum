@@ -77,6 +77,7 @@ Mac の手順同様ログが出たら一度止め、Mac の手順と同じよう
 > PHP の version は、必ず 7.4 以上を入れるようにしましょう。また下記コマンドを実行すれば必要なものが大方入り動作させることが可能になると思います
 
 - 下記7.4という数字は自身のPCでしようされているPHPのversionに合わせてください
+  - 7.4と書かれている箇所を自身のPCに入っているPHPのversionに合わせましょう
 
 ```shell
 $ sudo apt install -y php7.4 php7.4-zip php7.4-mbstring php7.4-xml php7.4-mysql unzip
