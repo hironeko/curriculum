@@ -66,7 +66,6 @@ touch resources/views/layouts/app.blade.php
         <table class="table-auto">
           <thead>
             <tr>
-              <th class="px-4 py-2">タイトル</th>
               <th class="px-4 py-2">やること</th>
               <th class="px-4 py-2">作成日時</th>
               <th class="px-4 py-2">更新日時</th>
@@ -74,10 +73,9 @@ touch resources/views/layouts/app.blade.php
           </thead>
           <tbody>
             <tr>
-              <td class="border px-4 py-2"></td>
-              <td class="border px-4 py-2"></td>
-              <td class="border px-4 py-2"></td>
-              <td class="border px-4 py-2"></td>
+              <td class="border px-4 py-2">初めてのTODOです</td>
+              <td class="border px-4 py-2">2021-02-01 00:00:00</td>
+              <td class="border px-4 py-2">2021-02-02 00:00:00</td>
             </tr>
           </tbody>
         </table>
