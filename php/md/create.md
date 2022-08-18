@@ -32,6 +32,7 @@
 
 - Mac ならデフォルトで入っていますので問題ありません。
 - Windows の方は WSL を利用していただければ Mac と同等の環境を構築することが可能です。
+- [こちらを参考に環境を整えましょう](https://github.com/hironeko/curriculum/tree/main/php)
 
 2. VSCode
 
