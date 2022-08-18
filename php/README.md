@@ -80,5 +80,15 @@ Mac の手順同様ログが出たら一度止め、Mac の手順と同じよう
   - 7.4と書かれている箇所を自身のPCに入っているPHPのversionに合わせましょう
 
 ```shell
-$ sudo apt install -y php7.4 php7.4-zip php7.4-mbstring php7.4-xml php7.4-mysql unzip
+$ sudo apt install -y php7.4 php7.4-zip php7.4-mbstring php7.4-xml php7.4-mysql unzip php7.4-opcache curl php-cli 
+```
+
+- composerのinstallをしましょう
+
+```shell
+$ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+$ php -r "if (hash_file('sha384', 'composer-setup.php') === 'e0012edf3e80b6978849f5eff0d4b4e4c79ff1609dd1e613307e16318854d24ae64f26d17af3ef0bf7cfb710ca74755a') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+$ php composer-setup.php
+$ php -r "unlink('composer-setup.php');"
+$ composer -v //versionの確認ができれば問題ないです
 ```
