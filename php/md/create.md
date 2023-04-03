@@ -56,9 +56,10 @@
 - Docker を導入してしましょう
   - [Download URL](https://matsuand.github.io/docs.docker.jp.onthefly/desktop/mac/install/)
   - Docker を起動します
-- git clone したディレクトリにて下記コマンドを実行しましょう
+- git clone したディレクトリ以下のある`php`ディレクトリ以下で下記コマンドを実行しましょう
   - `docker-compose up -d`
   - このコマンドを実行したことで DB が作成されます
+  - 必ず実行するディレクトリに `docker-compose.yml`が存在していることを前提に実行していください
 - ログみたいなものが出力されなくなったら`docker-compose ps`を実行してください。UP の文字が確認できたら成功です
 - src を任意の場所にコピーして作業を始めましょう
   - 理由：Github で管理してもらうにあたり管理してほしいのは、実装したコードのみにしてもらいためです
