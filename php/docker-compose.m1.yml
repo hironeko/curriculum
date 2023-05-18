@@ -2,8 +2,8 @@ version: '3.1'
 
 services:
   mysql:
+    platform: linux/amd64
     image: mysql:5.7
-	platform: linux/amd64
     environment:
       MYSQL_DATABASE: default
       MYSQL_ROOT_PASSWORD: root
