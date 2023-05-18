@@ -7,8 +7,7 @@
 
 #### M1 Macをしようしている人
 
-- docker-compose.ymlを使用せず、docker-compose.yml-for-M1を`docker-compose.yml`にリネームして使用していください。
-  - その際すでにそんざいしているfileは削除してください
+- `docker-compose -f docker-compose.m1.yml up -d`とfileを指定して使用するようにしてください
 
 ##### PHP
 
