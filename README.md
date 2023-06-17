@@ -5,13 +5,13 @@
 
 #### Mac
 
-#### M1 Macをしようしている人
+#### M1(or M2) Mac を使用している人
 
-- `docker-compose -f docker-compose.m1.yml up -d`とfileを指定して使用するようにしてください
+- `docker-compose -f docker-compose.m1.yml up -d`と file を指定して使用するようにしてください
 
 ##### PHP
 
-- 本カリキュラムでは、PHP の version は、7.4.\*以上を推奨します。
+- 本カリキュラムでは、PHP の version は、8.1.\*以上を推奨します。
 
 ##### DB
 
@@ -73,16 +73,16 @@ Mac の手順同様ログが出たら一度止め、Mac の手順と同じよう
 
 - Windows の場合、WSL2 には PHP が入っていません。適宜ダウンロードし使えるようにしましょう。
 
-> PHP の version は、必ず 7.4 以上を入れるようにしましょう。また下記コマンドを実行すれば必要なものが大方入り動作させることが可能になると思います
+> PHP の version は、必ず 8.1 以上を入れるようにしましょう。また下記コマンドを実行すれば必要なものが大方入り動作させることが可能になると思います
 
-- 下記7.4という数字は自身のPCでしようされているPHPのversionに合わせてください
-  - 7.4と書かれている箇所を自身のPCに入っているPHPのversionに合わせましょう
+- 下記 8.1 という数字は自身の PC でしようされている PHP の version に合わせてください
 
 ```shell
-$ sudo apt install -y php7.4 php7.4-zip php7.4-mbstring php7.4-xml php7.4-mysql unzip php7.4-opcache curl php-cli php7.4-curl
+$ sudo apt install -y php8.2 php8.2-zip php8.2-mbstring php8.2-xml php8.2-mysql unzip php8.2-opcache curl php-cli php8.2-curl
 ```
 
-- composerのinstallをしましょう
+- composer の install をしましょう
+  - 実行する場所は、`cd ~`でホームディレクトリという場所で行いましょう
 
 ```shell
 $ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
