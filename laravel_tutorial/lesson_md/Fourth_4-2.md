@@ -31,9 +31,9 @@
 namespace App\Http\Controllers;
 // 省略
 
-    public function __construct(Todo $instanceClass)
-    {
-        $this->todo = $instanceClass;
+    public function __construct(
+        private Todo $instanceClass
+    ) {
         $this->middleware('auth');  // 追記
     }
 
@@ -155,7 +155,7 @@ use Illuminate\Http\Request;  // 追記
         return redirect('/login');
     }
 // ここまで追記
-}
+
 ```
 
 上記のように書いたら実際に動かしてみましょう。

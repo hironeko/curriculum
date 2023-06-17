@@ -54,20 +54,13 @@ use App\Models\Todo;  // 追記
 */
 class TodoController extends Controller
 {
-    // ここから追記
-    /**
-    * @var Todo
-    */
-    private Todo $todo;
-
     /**
     * constructor function
     * @param Todo $todo
     */
-    public function __construct(Todo $todo)
-    {
-        $this->todo = $todo;
-    }
+    public function __construct(
+        private Todo $todo
+    ) {}
     // ここまで追記
 
 // 以下省略
@@ -79,10 +72,12 @@ class TodoController extends Controller
 
   - 正確には `namespace`です。この namespace に従って認識する様になってます。
 
-- `private Todo $todo;` ：private は、日本語的にクローズドなイメージを抱くかと思います。この場合の用途は、 `Class` 内でしか使用しないプロパティ言い換えれば `このClass` 以外からのアクセスを避けたいプロパティの定義の際に使用します。
-  - 他にも、`public` `protected` と種類がありますので併せて覚えておきましょう。
-  - またこのようなクラスにて使用するプロパティをメンバー変数と呼んだりします。
-  - タイプヒンティングとして private のあとに`Todo`と書いてます。これは、このプロパティに入る型の指定をおこなっています。今回ですと Todo という Object が入ることを意味しており、それ以外は、プロパティに代入できない様になっています。こうすることで予期せぬ代入を防ぐことができます。
+- constructorメソッドの引数で `private Todo $todo`と記載することで `private Todo $todo;`と同じ挙動になります。
+  - 下記で `private Todo $todo;`と書いた場合の説明を書きます。また今回記述した内容は、宣言と代入を同時に行なっているのか、バラバラで行なっているのかの違いです。
+    - `private Todo $todo;` ：private は、日本語的にクローズドなイメージを抱くかと思います。この場合の用途は、 `Class` 内でしか使用しないプロパティ言い換えれば `このClass` 以外からのアクセスを避けたいプロパティの定義の際に使用します。
+      - 他にも、`public` `protected` と種類がありますので併せて覚えておきましょう。
+      - またこのようなクラスにて使用するプロパティをメンバー変数と呼んだりします。
+      - タイプヒンティングとして private のあとに`Todo`と書いてます。これは、このプロパティに入る型の指定をおこなっています。今回ですと Todo という Object が入ることを意味しており、それ以外は、プロパティに代入できない様になっています。こうすることで予期せぬ代入を防ぐことができます。
 
 ### Laravel の魅力の一つ Dependency Injection について
 

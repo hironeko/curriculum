@@ -200,12 +200,9 @@ use App\Http\Controllers\Controller;
 
 class TodoController extends Controller
 {
-    private Todo $todo;
-
-    public function __construct(Todo $todo)
-    {
-        $this->todo = $todo;
-    }
+    public function __construct(
+      private Todo $todo
+    ) {}
 
     /**
      * Store a newly created resource in storage.

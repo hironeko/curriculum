@@ -1,12 +1,12 @@
 ## 下書き
 
-- 短いPHPの実装経験の上で必要だと感じた最低限のコーディングルール
+- 短い PHP の実装経験の上で必要だと感じた最低限のコーディングルール
 - 厳密な型指定
-- PHPDocsの記載
-- DIとは？
+- PHPDocs の記載
+- DI とは？
 - レイヤードアーキテクチャ
-- 1fileでの責務の明確化
-- 1メソッドの記述量を少なくし可読性をあげる
+- 1file での責務の明確化
+- 1 メソッドの記述量を少なくし可読性をあげる
 
 ```php
 <?php
@@ -22,22 +22,16 @@ use App\Models\User;
 class UserSettingService
 {
     /**
-    * @var User
-    */
-    private $user;
-
-    /**
     * constructor
     * @param User $user
     */
-    public function __constructor(User $user)
-    {
-        $this->user = $user;
-    }
+    public function __constructor(
+        private User $user
+    ) {}
 }
 ```
 
-- if文
+- if 文
 
 ```php
 $item = null;
@@ -49,6 +43,7 @@ if (is_null($item)) {
 ## sql
 
 頻出コマンド
+
 ```
 show databases;
 show tables;
@@ -59,9 +54,8 @@ desc table_name;
 ```
 
 頻出用語
+
 ```
 実行計画
 index（索引）
 ```
-
-
